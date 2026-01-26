@@ -1,0 +1,120 @@
+{
+  "app": {
+    "title": "Jutukuva Subtitles",
+    "shortcut_hint": "Ctrl+Shift+O to toggle overlay"
+  },
+  "session": {
+    "title": "Session",
+    "code_placeholder": "SESSION CODE",
+    "connect": "Connect",
+    "disconnect": "Disconnect",
+    "connected": "Connected",
+    "rejoin": "Reconnect",
+    "error_invalid_code": "Enter a valid 6-digit code",
+    "password_placeholder": "Enter password",
+    "password_hint": "This session requires a password",
+    "password_required": "Please enter the password"
+  },
+  "preview": {
+    "title": "Preview",
+    "show_overlay": "Show overlay",
+    "hide_overlay": "Hide overlay",
+    "waiting": "Waiting for subtitles..."
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Customize your view",
+    "close": "Close",
+    "font_size": "Font size",
+    "font_weight": "Font weight",
+    "font_weight_regular": "Regular",
+    "font_weight_regular_desc": "Normal weight",
+    "font_weight_semibold": "Semibold",
+    "font_weight_semibold_desc": "Emphasized text",
+    "colors": "Colors",
+    "colors_desc": "Choose text and background colors",
+    "text_color": "Text color",
+    "background_color": "Background color",
+    "presets": "Presets",
+    "preset_black_on_white": "Black on white",
+    "preset_white_on_black": "White on black",
+    "preset_yellow_on_black": "Yellow on black",
+    "preset_cyan_on_dark": "Cyan on dark",
+    "preset_amber_on_charcoal": "Amber on charcoal",
+    "preset_blue_on_graphite": "Blue on graphite",
+    "layout": "Layout",
+    "layout_desc": "Text alignment and layout",
+    "horizontal_alignment": "Horizontal alignment",
+    "align_full": "Full width",
+    "align_left": "Left",
+    "align_middle": "Center",
+    "align_right": "Right",
+    "reset": "Reset to defaults",
+    "overlay": {
+      "title": "Overlay",
+      "position": "Position",
+      "position_top": "Top",
+      "position_center": "Center",
+      "position_bottom": "Bottom",
+      "position_custom": "Custom",
+      "width": "Width",
+      "height": "Height",
+      "click_through": "Click-through mode",
+      "display_mode": "Display mode",
+      "last_line": "Last line",
+      "multi_line": "Multiple lines",
+      "reset_position": "Reset position"
+    },
+    "font": {
+      "title": "Font",
+      "family": "Font family",
+      "size": "Size",
+      "weight": "Weight",
+      "text_color": "Text color",
+      "background_color": "Background color",
+      "background_opacity": "Background opacity"
+    },
+    "line_height": "Line height",
+    "preview_text": "Preview text"
+  },
+  "overlay": {
+    "waiting": "Waiting for subtitles...",
+    "settings_loaded": "Settings loaded, waiting for subtitles...",
+    "error_loading": "Error loading settings",
+    "close": "Close overlay"
+  },
+  "help": {
+    "title": "User Guide",
+    "subtitle": "Overlay application guide",
+    "joining": {
+      "title": "Joining a Session",
+      "step1": "Enter the 6-digit session code in the main field",
+      "step2": "If the session is password-protected, enter the password",
+      "step3": "Click 'Connect' and wait for the connection"
+    },
+    "controls": {
+      "title": "Overlay Controls",
+      "move": "Drag the main window to move it",
+      "resize": "Use the settings window to adjust size",
+      "toggle": "Press Ctrl+Shift+O to show/hide overlay",
+      "clickThrough": "Enable click-through mode to click through the overlay"
+    },
+    "shortcuts": {
+      "title": "Keyboard Shortcuts",
+      "toggleOverlay": "Show/hide overlay window"
+    },
+    "customization": {
+      "title": "Appearance Customization",
+      "fontSize": "Adjust font size in settings",
+      "colors": "Customize text and background colors",
+      "presets": "Use preset color schemes",
+      "alignment": "Change text alignment as needed"
+    },
+    "tips": {
+      "title": "Tips",
+      "tip1": "Use white text on black background for better contrast",
+      "tip2": "Increase font size when viewing from a distance",
+      "tip3": "Use click-through mode to click on windows behind the overlay"
+    }
+  }
+}

@@ -7,6 +7,7 @@
 // Modal visibility state using Svelte 5 runes
 let _showSessionsModal = $state(false);
 let _showDictionariesModal = $state(false);
+let _showHelpModal = $state(false);
 
 export const modalStore = {
 	get showSessionsModal() {
@@ -21,6 +22,12 @@ export const modalStore = {
 	set showDictionariesModal(value: boolean) {
 		_showDictionariesModal = value;
 	},
+	get showHelpModal() {
+		return _showHelpModal;
+	},
+	set showHelpModal(value: boolean) {
+		_showHelpModal = value;
+	},
 	openSessions() {
 		_showSessionsModal = true;
 	},
@@ -32,5 +39,11 @@ export const modalStore = {
 	},
 	closeDictionaries() {
 		_showDictionariesModal = false;
+	},
+	openHelp() {
+		_showHelpModal = true;
+	},
+	closeHelp() {
+		_showHelpModal = false;
 	}
 };

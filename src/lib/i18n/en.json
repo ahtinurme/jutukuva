@@ -4,7 +4,8 @@
   },
   "nav": {
     "sessions": "Sessions",
-    "textSnippets": "Substitutions"
+    "textSnippets": "Substitutions",
+    "help": "User Guide"
   },
   "theme": {
     "light": "Light",
@@ -814,6 +815,252 @@
       "builtin": "Built-in",
       "exportError": "Failed to export dictionary",
       "importError": "Failed to import dictionary. Please check the file format."
+    }
+  },
+  "help": {
+    "title": "User Guide",
+    "description": "Jutukuva application guides and technical information",
+    "nav": {
+      "gettingStarted": "Getting Started",
+      "textEditing": "Text Editing",
+      "dictionaries": "Substitution Dictionaries",
+      "sessionSharing": "Session Sharing",
+      "overlaySubtitles": "Overlay Subtitles",
+      "tips": "Tips",
+      "technicalInfo": "Technical Info"
+    },
+    "gettingStarted": {
+      "title": "Getting Started",
+      "installation": {
+        "title": "Application Installation",
+        "description": "Jutukuva is a desktop application that works on Windows, macOS, and Linux.",
+        "step1": "Download the application from the official website",
+        "step2": "Run the installer and follow the instructions",
+        "step3": "Open the application and you're ready to start"
+      },
+      "audioSource": {
+        "title": "Choosing Audio Source",
+        "description": "Jutukuva supports two types of audio sources:",
+        "microphone": "Microphone",
+        "microphoneDesc": "use your computer's microphone or external microphone to record speech directly",
+        "system": "System Audio",
+        "systemDesc": "capture audio playing on your computer (e.g., from meeting applications)"
+      },
+      "recording": {
+        "title": "Starting Recording",
+        "description": "To start speech recognition:",
+        "step1": "Select audio source from settings (gear icon)",
+        "step2": "Press the large microphone button to start recording",
+        "step3": "Speak clearly and text will appear in the editor in real-time"
+      },
+      "modelDownload": {
+        "title": "Speech Recognition Model Download",
+        "description": "On first launch, the application downloads the speech recognition model. This happens automatically and may take a few minutes depending on your internet connection speed. Subsequent launches will use the already downloaded model."
+      }
+    },
+    "textEditing": {
+      "title": "Text Editing",
+      "realtime": {
+        "title": "Real-time Editing",
+        "description": "You can edit text simultaneously while recording:",
+        "feature1": "Click anywhere in the text to make corrections",
+        "feature2": "Pending words are highlighted until confirmed",
+        "feature3": "Auto-confirm will confirm words after a certain time"
+      },
+      "shortcuts": {
+        "title": "Keyboard Shortcuts",
+        "action": "Action",
+        "shortcut": "Shortcut",
+        "confirmWords": "Confirm words up to cursor position",
+        "undo": "Undo",
+        "redo": "Redo",
+        "newParagraph": "New paragraph",
+        "newParagraphSpeaker": "New paragraph with speaker selection",
+        "nextWord": "Move to next word",
+        "prevWord": "Move to previous word"
+      },
+      "speakers": {
+        "title": "Managing Speakers",
+        "description": "You can assign different speakers to different paragraphs:",
+        "feature1": "Press Tab to create a new paragraph and select a speaker",
+        "feature2": "Click on the speaker name at the beginning of a paragraph to change it",
+        "feature3": "Speakers are automatically saved for future sessions"
+      },
+      "autoScroll": {
+        "title": "Auto Scroll",
+        "description": "When auto-scroll is enabled, the editor will automatically scroll to keep the latest text visible. You can disable it if you want to navigate manually."
+      }
+    },
+    "dictionaries": {
+      "title": "Substitution Dictionaries",
+      "overview": {
+        "title": "Overview",
+        "description": "Substitution dictionaries allow you to create abbreviations that are automatically replaced with longer text. This is useful for frequently used phrases, names, or technical terms."
+      },
+      "creating": {
+        "title": "Creating a Dictionary",
+        "step1": "Open 'Substitutions' from the navigation",
+        "step2": "Click 'New Dictionary' and enter a name",
+        "step3": "Add entries by specifying the trigger and replacement"
+      },
+      "entries": {
+        "title": "Adding Entries",
+        "description": "Each entry consists of a trigger and a replacement:",
+        "trigger": "amb",
+        "replacement": "ambulance",
+        "example": "Example: when you type 'amb' and press space, it will be replaced with 'ambulance'"
+      },
+      "usage": {
+        "title": "Usage",
+        "spaceKey": "Space",
+        "applyDesc": "apply substitution (when ghost text is visible)",
+        "cancelDesc": "cancel substitution and insert regular space"
+      },
+      "importExport": {
+        "title": "Import and Export",
+        "description": "You can share and backup dictionaries:",
+        "export": "Export saves the dictionary as a JSON file",
+        "import": "Import loads entries from a JSON file into an existing dictionary"
+      }
+    },
+    "sessionSharing": {
+      "title": "Session Sharing",
+      "overview": {
+        "title": "Overview",
+        "description": "Jutukuva allows you to share real-time transcription with others. Viewers can see text appearing simultaneously as you record."
+      },
+      "creating": {
+        "title": "Creating a Session",
+        "step1": "Click the collaboration button (people icon) in the editor toolbar",
+        "step2": "Select 'Start New Session'",
+        "step3": "Share the session code with others"
+      },
+      "code": {
+        "title": "Session Code",
+        "description": "Each session gets a unique 6-character code:",
+        "example": "Example session code"
+      },
+      "qr": {
+        "title": "QR Code",
+        "description": "In the session sharing modal, you'll find a QR code that others can scan with their phone to join immediately."
+      },
+      "webLink": {
+        "title": "Web Link",
+        "description": "You can also share a direct link that opens the session in a web browser:"
+      },
+      "password": {
+        "title": "Password Protection",
+        "description": "When creating or editing a session, you can add a password. If a password is set, viewers must enter it before they can see the text."
+      },
+      "participants": {
+        "title": "Managing Participants",
+        "description": "In the session sharing modal, you can see all connected participants. You can end the session at any time, which will disconnect everyone."
+      }
+    },
+    "overlaySubtitles": {
+      "title": "Overlay Subtitles",
+      "overview": {
+        "title": "Overview",
+        "description": "The overlay subtitles application displays subtitles as a transparent window on top of any other application. It's ideal for meetings, presentations, or video calls."
+      },
+      "installation": {
+        "title": "Installation",
+        "description": "The overlay application is a separate program you can download:",
+        "windows": "Windows: download the .exe file and run it",
+        "macos": "macOS: download the .dmg file and drag the application to the Applications folder",
+        "linux": "Linux: download the AppImage or use the package manager"
+      },
+      "joining": {
+        "title": "Joining a Session",
+        "step1": "Open the overlay application",
+        "step2": "Enter the 6-character session code",
+        "step3": "If the session is password protected, enter the password too"
+      },
+      "controls": {
+        "title": "Overlay Controls",
+        "move": "Drag the window to move it on the screen",
+        "resize": "Use the window edges to resize",
+        "toggle": "Press Ctrl+Shift+O to quickly hide/show the overlay"
+      },
+      "customization": {
+        "title": "Customizing Appearance",
+        "fontSize": "Change font size according to viewing distance",
+        "fontWeight": "Choose regular or semi-bold text",
+        "colors": "Customize text and background colors",
+        "presets": "Use preset color schemes for quick customization"
+      },
+      "shortcut": {
+        "title": "Global Shortcut",
+        "description": "This key combination works at any time, even when the overlay application is not focused"
+      }
+    },
+    "tips": {
+      "title": "Tips for Better Results",
+      "microphone": {
+        "title": "Microphone Setup",
+        "tip1": "Use a quality microphone, preferably headphones with a microphone",
+        "tip2": "Position the microphone close to your mouth (10-15 cm)",
+        "tip3": "Avoid touching or moving the microphone during recording"
+      },
+      "environment": {
+        "title": "Environment",
+        "tip1": "Choose a quiet room without background noise",
+        "tip2": "Avoid rooms with strong echo",
+        "tip3": "Close windows and doors to reduce noise"
+      },
+      "speaking": {
+        "title": "Speaking Style",
+        "tip1": "Speak clearly and at a moderate pace",
+        "tip2": "Maintain a consistent distance from the microphone",
+        "tip3": "Take natural pauses between sentences"
+      },
+      "estonian": {
+        "title": "Estonian Language Specifics",
+        "description": "Jutukuva is optimized for Estonian speech recognition:",
+        "tip1": "Pronounce long and short sounds clearly",
+        "tip2": "Speak numbers and abbreviations as words when possible"
+      }
+    },
+    "technicalInfo": {
+      "title": "Technical Information",
+      "database": {
+        "title": "Database Location",
+        "description": "Jutukuva saves sessions and settings in a local database:",
+        "os": "Operating System",
+        "path": "Location"
+      },
+      "logs": {
+        "title": "Log File Location",
+        "description": "Log files needed for troubleshooting are located at:"
+      },
+      "network": {
+        "title": "Network Requirements",
+        "description": "Internet connection is required for session sharing:",
+        "requirement1": "Speech recognition works completely offline - no internet needed",
+        "requirement2": "Session sharing requires connection to tekstiks.ee server"
+      },
+      "macosAudio": {
+        "title": "Setting Up System Audio on macOS",
+        "description": "On macOS, a virtual audio device is needed to capture system audio:",
+        "step1": "Install BlackHole or similar virtual audio device",
+        "step2": "Create a Multi-Output device using Audio MIDI Setup",
+        "step3": "Select the BlackHole device as audio source in Jutukuva"
+      },
+      "troubleshooting": {
+        "title": "Common Problems and Solutions",
+        "issue1": {
+          "title": "Speech recognition doesn't start",
+          "solution": "Check that the microphone is connected and the application has permission to use the microphone. Try restarting the application."
+        },
+        "issue2": {
+          "title": "Session sharing doesn't work",
+          "solution": "Check your internet connection. Make sure the firewall is not blocking connection to the tekstiks.ee server."
+        },
+        "issue3": {
+          "title": "Poor recognition quality",
+          "solution": "Check microphone quality and environment. Speak slower and clearer. Make sure the microphone is positioned correctly."
+        }
+      }
     }
   }
 }

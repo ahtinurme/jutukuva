@@ -7,7 +7,9 @@
 	import WindowControls from '$lib/components/WindowControls.svelte';
 	import SessionJoin from '$lib/components/SessionJoin.svelte';
 	import SettingsDrawer from '$lib/components/SettingsDrawer.svelte';
+	import HelpDrawer from '$lib/components/HelpDrawer.svelte';
 	import CaptionDisplay from '$lib/components/CaptionDisplay.svelte';
+	import LanguageSelector from '$lib/components/LanguageSelector.svelte';
 	import { settingsStore } from '$lib/stores/settings.svelte';
 	import { yjsStore } from '$lib/stores/yjs.svelte';
 	import { captionStore } from '$lib/stores/caption.svelte'; // broadcasts via Rust backend
@@ -15,6 +17,7 @@
 
 	let overlayVisible = $state(false);
 	let settingsDrawerOpen = $state(false);
+	let helpDrawerOpen = $state(false);
 	let deepLinkCode = $state('');
 	let deepLinkPassword = $state('');
 
@@ -133,6 +136,12 @@
 	onReset={() => settingsStore.reset()}
 />
 
+<!-- Help Drawer -->
+<HelpDrawer
+	open={helpDrawerOpen}
+	onClose={() => (helpDrawerOpen = false)}
+/>
+
 <div class="h-screen flex flex-col bg-[#0F0F0F] text-white overflow-hidden font-sans selection:bg-primary/30">
 	<!-- Title Bar -->
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -145,6 +154,16 @@
 			<span class="font-bold text-sm tracking-wide text-white/90">{$_('app.title')}</span>
 		</div>
 		<div class="flex items-center gap-1">
+			<button
+				class="btn btn-ghost btn-xs btn-square text-white/40 hover:text-white hover:bg-white/10 rounded-lg transition-all"
+				onclick={() => (helpDrawerOpen = true)}
+				aria-label={$_('help.title')}
+				title={$_('help.title')}
+			>
+				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+					<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+				</svg>
+			</button>
 			<button
 				class="btn btn-ghost btn-xs btn-square text-white/40 hover:text-white hover:bg-white/10 rounded-lg transition-all"
 				onclick={() => (settingsDrawerOpen = true)}
@@ -223,6 +242,9 @@
 	<!-- Minimal Footer -->
 	<div class="px-6 py-3 text-[10px] text-white/20 flex justify-between items-center bg-transparent relative z-10 w-full">
 		<span class="uppercase tracking-wider">{$_('app.shortcut_hint')}</span>
-		<span class="font-mono opacity-50">v{version}</span>
+		<div class="flex items-center gap-3">
+			<LanguageSelector />
+			<span class="font-mono opacity-50">v{version}</span>
+		</div>
 	</div>
 </div>

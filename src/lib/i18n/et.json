@@ -4,7 +4,8 @@
   },
   "nav": {
     "sessions": "Sessioonid",
-    "textSnippets": "Asendused"
+    "textSnippets": "Asendused",
+    "help": "Kasutusjuhend"
   },
   "theme": {
     "light": "Hele",
@@ -807,6 +808,252 @@
       "builtin": "Sisseehitatud",
       "exportError": "Sõnastiku eksportimine ebaõnnestus",
       "importError": "Sõnastiku importimine ebaõnnestus. Palun kontrolli faili vormingut."
+    }
+  },
+  "help": {
+    "title": "Kasutusjuhend",
+    "description": "Jutukuva rakenduse juhendid ja tehniline info",
+    "nav": {
+      "gettingStarted": "Alustamine",
+      "textEditing": "Teksti redigeerimine",
+      "dictionaries": "Asendussõnastikud",
+      "sessionSharing": "Sessiooni jagamine",
+      "overlaySubtitles": "Ülekatte subtiitrid",
+      "tips": "Nõuanded",
+      "technicalInfo": "Tehniline info"
+    },
+    "gettingStarted": {
+      "title": "Alustamine",
+      "installation": {
+        "title": "Rakenduse paigaldamine",
+        "description": "Jutukuva on töölauarakendus, mis töötab Windowsis, macOS-is ja Linuxis.",
+        "step1": "Laadige rakendus alla ametlikult veebilehelt",
+        "step2": "Käivitage paigaldusprogramm ja järgige juhiseid",
+        "step3": "Avage rakendus ja oletegi valmis alustama"
+      },
+      "audioSource": {
+        "title": "Heliallika valimine",
+        "description": "Jutukuva toetab kahte tüüpi heliallikaid:",
+        "microphone": "Mikrofon",
+        "microphoneDesc": "kasutage oma arvuti mikrofoni või välist mikrofoni otse kõne salvestamiseks",
+        "system": "Süsteemiheli",
+        "systemDesc": "salvestage arvutis mängivat heli (nt koosolekurakendusest)"
+      },
+      "recording": {
+        "title": "Salvestamise alustamine",
+        "description": "Kõnetuvastuse alustamiseks:",
+        "step1": "Valige heliallikas seadetest (hammasratta ikoon)",
+        "step2": "Vajutage suurt mikrofoni nuppu salvestamise alustamiseks",
+        "step3": "Rääkige selgelt ja tekst ilmub reaalajas redaktorisse"
+      },
+      "modelDownload": {
+        "title": "Kõnetuvastuse mudeli allalaadimine",
+        "description": "Esimesel käivitamisel laadib rakendus alla kõnetuvastuse mudeli. See toimub automaatselt ja võib võtta mõne minuti sõltuvalt internetiühenduse kiirusest. Järgnevatel käivitamistel kasutatakse juba allalaaditud mudelit."
+      }
+    },
+    "textEditing": {
+      "title": "Teksti redigeerimine",
+      "realtime": {
+        "title": "Reaalajas redigeerimine",
+        "description": "Saate teksti redigeerida samaaegselt salvestamisega:",
+        "feature1": "Klõpsake suvalises kohas tekstis ja tehke parandusi",
+        "feature2": "Ootel sõnad on esile tõstetud, kuni need kinnitatakse",
+        "feature3": "Automaatne kinnitamine kinnitab sõnad teatud aja möödudes"
+      },
+      "shortcuts": {
+        "title": "Kiirklahvid",
+        "action": "Tegevus",
+        "shortcut": "Kiirklahv",
+        "confirmWords": "Kinnita sõnad kuni kursori asukohani",
+        "undo": "Võta tagasi",
+        "redo": "Tee uuesti",
+        "newParagraph": "Uus lõik",
+        "newParagraphSpeaker": "Uus lõik koos kõneleja valikuga",
+        "nextWord": "Liigu järgmisele sõnale",
+        "prevWord": "Liigu eelmisele sõnale"
+      },
+      "speakers": {
+        "title": "Kõnelejate haldamine",
+        "description": "Saate määrata erinevaid kõnelejaid erinevatele lõikudele:",
+        "feature1": "Vajutage Tab, et luua uus lõik ja valida kõneleja",
+        "feature2": "Klõpsake lõigu alguses kõneleja nimel selle muutmiseks",
+        "feature3": "Kõnelejad salvestatakse automaatselt tulevasteks sessioonideks"
+      },
+      "autoScroll": {
+        "title": "Automaatne kerimine",
+        "description": "Kui automaatne kerimine on sisse lülitatud, kerib redaktor automaatselt, et viimane tekst oleks alati nähtav. Saate selle välja lülitada, kui soovite käsitsi navigeerida."
+      }
+    },
+    "dictionaries": {
+      "title": "Asendussõnastikud",
+      "overview": {
+        "title": "Ülevaade",
+        "description": "Asendussõnastikud võimaldavad luua lühendeid, mis automaatselt asendatakse pikema tekstiga. See on kasulik sageli kasutatavate fraaside, nimede või tehniliste terminite jaoks."
+      },
+      "creating": {
+        "title": "Sõnastiku loomine",
+        "step1": "Avage navigatsioonist 'Asendused'",
+        "step2": "Klõpsake 'Uus sõnastik' ja sisestage nimi",
+        "step3": "Lisage kirjeid, määrates päästiku ja asenduse"
+      },
+      "entries": {
+        "title": "Kirjete lisamine",
+        "description": "Iga kirje koosneb päästikust ja asendusest:",
+        "trigger": "kiir",
+        "replacement": "kiirabi",
+        "example": "Näide: kui kirjutate 'kiir' ja vajutate tühikut, asendatakse see sõnaga 'kiirabi'"
+      },
+      "usage": {
+        "title": "Kasutamine",
+        "spaceKey": "Tühik",
+        "applyDesc": "rakenda asendus (kui vihjetekst on nähtav)",
+        "cancelDesc": "tühista asendus ja lisa tavaline tühik"
+      },
+      "importExport": {
+        "title": "Import ja eksport",
+        "description": "Saate sõnastikke jagada ja varundada:",
+        "export": "Eksport salvestab sõnastiku JSON-failina",
+        "import": "Import laadib kirjed JSON-failist olemasolevasse sõnastikku"
+      }
+    },
+    "sessionSharing": {
+      "title": "Sessiooni jagamine",
+      "overview": {
+        "title": "Ülevaade",
+        "description": "Jutukuva võimaldab jagada reaalajas transkriptsiooni teistega. Vaatajad näevad teksti ilmumist samaaegselt salvestamisega."
+      },
+      "creating": {
+        "title": "Sessiooni loomine",
+        "step1": "Klõpsake koostöönupul (inimeste ikoon) redaktori tööriistaribal",
+        "step2": "Valige 'Alusta uut sessiooni'",
+        "step3": "Jagage sessiooni koodi teistega"
+      },
+      "code": {
+        "title": "Sessiooni kood",
+        "description": "Iga sessioon saab unikaalse 6-kohalise koodi:",
+        "example": "Sessiooni koodi näide"
+      },
+      "qr": {
+        "title": "QR-kood",
+        "description": "Sessiooni jagamise modaalist leiate QR-koodi, mida teised saavad oma telefoniga skaneerida, et kohe liituda."
+      },
+      "webLink": {
+        "title": "Veebilink",
+        "description": "Saate jagada ka otselinki, mis avab sessiooni veebilehitsejas:"
+      },
+      "password": {
+        "title": "Paroolikaitse",
+        "description": "Sessiooni loomisel või muutmisel saate lisada parooli. Kui parool on seadistatud, peavad liitujad selle sisestama enne, kui saavad teksti näha."
+      },
+      "participants": {
+        "title": "Osalejate haldamine",
+        "description": "Sessiooni jagamise modaalis näete kõiki ühendatud osalejaid. Saate sessiooni igal ajal lõpetada, mis katkestab kõik ühendused."
+      }
+    },
+    "overlaySubtitles": {
+      "title": "Ülekatte subtiitrid",
+      "overview": {
+        "title": "Ülevaade",
+        "description": "Ülekatte subtiitrite rakendus kuvab subtiitreid läbipaistva aknana mis tahes teise rakenduse kohal. See on ideaalne koosolekutel, esitlustel või videokõnedel."
+      },
+      "installation": {
+        "title": "Paigaldamine",
+        "description": "Ülekatte rakendus on eraldiseisev programm, mille saate alla laadida:",
+        "windows": "Windows: laadige alla .exe fail ja käivitage see",
+        "macos": "macOS: laadige alla .dmg fail ja lohistage rakendus Applications kausta",
+        "linux": "Linux: laadige alla AppImage või kasutage pakihaldurit"
+      },
+      "joining": {
+        "title": "Sessiooniga liitumine",
+        "step1": "Avage ülekatte rakendus",
+        "step2": "Sisestage 6-kohaline sessiooni kood",
+        "step3": "Kui sessioon on parooliga kaitstud, sisestage ka parool"
+      },
+      "controls": {
+        "title": "Ülekatte juhtimine",
+        "move": "Lohistage akent selle liigutamiseks ekraanil",
+        "resize": "Kasutage akna servi suuruse muutmiseks",
+        "toggle": "Vajutage Ctrl+Shift+O ülekatte kiireks peitmiseks/näitamiseks"
+      },
+      "customization": {
+        "title": "Välimuse kohandamine",
+        "fontSize": "Muutke fondi suurust vastavalt vaatamiskaugusele",
+        "fontWeight": "Valige tavapaks või poolpaks tekst",
+        "colors": "Kohandage teksti ja tausta värve",
+        "presets": "Kasutage eelseadistatud värviskeeme kiireks kohandamiseks"
+      },
+      "shortcut": {
+        "title": "Globaalne kiirklahv",
+        "description": "See klahvikombinatsioon töötab igal ajal, isegi kui ülekatte rakendus pole fookuses"
+      }
+    },
+    "tips": {
+      "title": "Nõuanded parema tulemuse saamiseks",
+      "microphone": {
+        "title": "Mikrofoni seadistus",
+        "tip1": "Kasutage kvaliteetset mikrofoni, eelistatavalt kõrvaklappe koos mikrofoniga",
+        "tip2": "Paigutage mikrofon suu lähedale (10-15 cm)",
+        "tip3": "Vältige mikrofoni puudutamist ja liigutamist salvestamise ajal"
+      },
+      "environment": {
+        "title": "Keskkond",
+        "tip1": "Valige vaikne ruum ilma taustamürata",
+        "tip2": "Vältige ruume tugeva kajaga",
+        "tip3": "Sulgege aknad ja uksed müra vähendamiseks"
+      },
+      "speaking": {
+        "title": "Kõneviis",
+        "tip1": "Rääkige selgelt ja mõõdukas tempos",
+        "tip2": "Hoidke ühtlast kaugust mikrofonist",
+        "tip3": "Tehke loomulikke pause lausete vahel"
+      },
+      "estonian": {
+        "title": "Eesti keele eripärad",
+        "description": "Jutukuva on optimeeritud eesti keele tuvastamiseks:",
+        "tip1": "Hääldage selgelt pikad ja lühikesed häälikud",
+        "tip2": "Numbrid ja lühendid öelge sõnadena välja, kui võimalik"
+      }
+    },
+    "technicalInfo": {
+      "title": "Tehniline info",
+      "database": {
+        "title": "Andmebaasi asukoht",
+        "description": "Jutukuva salvestab sessioone ja seadeid kohalikku andmebaasi:",
+        "os": "Operatsioonisüsteem",
+        "path": "Asukoht"
+      },
+      "logs": {
+        "title": "Logifailide asukoht",
+        "description": "Tõrkeotsinguks vajalikud logifailid asuvad:"
+      },
+      "network": {
+        "title": "Võrguühenduse nõuded",
+        "description": "Sessiooni jagamiseks on vajalik internetiühendus:",
+        "requirement1": "Kõnetuvastus töötab täielikult offline - internetti pole vaja",
+        "requirement2": "Sessiooni jagamiseks on vajalik ühendus tekstiks.ee serveriga"
+      },
+      "macosAudio": {
+        "title": "Süsteemiheli seadistamine macOS-il",
+        "description": "macOS-il süsteemiheli salvestamiseks on vajalik virtuaalne heliseade:",
+        "step1": "Paigaldage BlackHole või sarnane virtuaalne heliseade",
+        "step2": "Looge Audio MIDI Setup abil Multi-Output seade",
+        "step3": "Valige Jutukuvas heliallikaks BlackHole seade"
+      },
+      "troubleshooting": {
+        "title": "Levinud probleemid ja lahendused",
+        "issue1": {
+          "title": "Kõnetuvastus ei käivitu",
+          "solution": "Kontrollige, et mikrofon on ühendatud ja rakendusele on antud mikrofoni kasutamise õigus. Proovige rakendus taaskäivitada."
+        },
+        "issue2": {
+          "title": "Sessiooni jagamine ei tööta",
+          "solution": "Kontrollige internetiühendust. Veenduge, et tulemüür ei blokeeri ühendust tekstiks.ee serveriga."
+        },
+        "issue3": {
+          "title": "Kehv tuvastuskvaliteet",
+          "solution": "Kontrollige mikrofoni kvaliteeti ja keskkonda. Rääkige aeglasemalt ja selgemalt. Veenduge, et mikrofon on õigesti positsioneeritud."
+        }
+      }
     }
   }
 }

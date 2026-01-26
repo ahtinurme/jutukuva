@@ -82,5 +82,39 @@
     "settings_loaded": "Seaded laaditud, ootan subtiitreid...",
     "error_loading": "Viga seadete laadimisel",
     "close": "Sulge ülekate"
+  },
+  "help": {
+    "title": "Kasutusjuhend",
+    "subtitle": "Ülekatte rakenduse juhend",
+    "joining": {
+      "title": "Sessiooniga liitumine",
+      "step1": "Sisestage 6-kohaline sessiooni kood põhiväljale",
+      "step2": "Kui sessioon on parooliga kaitstud, sisestage ka parool",
+      "step3": "Klõpsake 'Ühenda' ja oodake ühenduse loomist"
+    },
+    "controls": {
+      "title": "Ülekatte juhtimine",
+      "move": "Lohistage peaakent selle liigutamiseks",
+      "resize": "Kasutage seadete aknas suuruse reguleerimist",
+      "toggle": "Vajutage Ctrl+Shift+O ülekatte näitamiseks/peitmiseks",
+      "clickThrough": "Lülitage sisse läbiklõpsamise režiim, et klõpsata läbi ülekatte"
+    },
+    "shortcuts": {
+      "title": "Kiirklahvid",
+      "toggleOverlay": "Näita/peida ülekatteaken"
+    },
+    "customization": {
+      "title": "Välimuse kohandamine",
+      "fontSize": "Reguleerige fondi suurust seadetes",
+      "colors": "Kohandage teksti ja tausta värve",
+      "presets": "Kasutage eelseadistatud värviskeeme",
+      "alignment": "Muutke teksti joondust vastavalt vajadusele"
+    },
+    "tips": {
+      "title": "Nõuanded",
+      "tip1": "Kasutage musta tausta valge tekstiga paremate kontrastide jaoks",
+      "tip2": "Suurendage fondi, kui vaatate ekraani kaugelt",
+      "tip3": "Kasutage läbiklõpsamise režiimi, et saaksite klõpsata all olevatele akendele"
+    }
   }
 }

@@ -2,15 +2,30 @@
 	import { onMount } from 'svelte';
 	import '../app.css';
 	import '$lib/i18n';
-	import { _ } from 'svelte-i18n';
+	import { _, locale } from 'svelte-i18n';
 	import LanguageSelector from '$lib/components/LanguageSelector.svelte';
 	import ThemeSelector from '$lib/components/ThemeSelector.svelte';
 	import { theme } from '$lib/stores/theme';
 	import { modalStore } from '$lib/stores/modalStore.svelte';
 
-	// Initialize theme on mount
+	let isMacOS = $state(false);
+
+	// Initialize theme and language on mount
 	onMount(() => {
 		theme.init();
+
+		// Load saved language preference
+		const savedLang = localStorage.getItem('language');
+		if (savedLang && ['et', 'en', 'fi'].includes(savedLang)) {
+			locale.set(savedLang);
+		}
+
+		// Detect macOS for traffic light padding
+		if (typeof window !== 'undefined' && window.electronAPI?.getPlatform) {
+			window.electronAPI.getPlatform().then((platform: string) => {
+				isMacOS = platform === 'darwin';
+			});
+		}
 	});
 
 	// Navigation items - now using action handlers instead of hrefs for modals
@@ -38,6 +53,12 @@
 			labelKey: 'nav.textSnippets',
 			labelDefault: 'Substitutions',
 			action: () => modalStore.openDictionaries()
+		},
+		{
+			id: 'help',
+			labelKey: 'nav.help',
+			labelDefault: 'Kasutusjuhend',
+			action: () => modalStore.openHelp()
 		}
 	];
 
@@ -45,8 +66,9 @@
 	function isNavActive(id: string): boolean {
 		if (id === 'sessions') return modalStore.showSessionsModal;
 		if (id === 'dictionaries') return modalStore.showDictionariesModal;
+		if (id === 'help') return modalStore.showHelpModal;
 		// Editor is active when no modal is open
-		return id === 'editor' && !modalStore.showSessionsModal && !modalStore.showDictionariesModal;
+		return id === 'editor' && !modalStore.showSessionsModal && !modalStore.showDictionariesModal && !modalStore.showHelpModal;
 	}
 
 	function handleNavClick(item: NavItem) {
@@ -54,12 +76,18 @@
 		if (item.id === 'editor') {
 			modalStore.closeSessions();
 			modalStore.closeDictionaries();
+			modalStore.closeHelp();
 		} else if (item.action) {
 			// Close other modals before opening this one
 			if (item.id === 'sessions') {
 				modalStore.closeDictionaries();
+				modalStore.closeHelp();
 			} else if (item.id === 'dictionaries') {
 				modalStore.closeSessions();
+				modalStore.closeHelp();
+			} else if (item.id === 'help') {
+				modalStore.closeSessions();
+				modalStore.closeDictionaries();
 			}
 			item.action();
 		}
@@ -70,7 +98,7 @@
 	<!-- Navbar -->
 	<nav class="w-full bg-base-100/80 backdrop-blur-xl border-b border-base-200/50 transition-all duration-300">
 		<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-			<div class="flex items-center justify-between h-16">
+			<div class="flex items-center justify-between h-16 {isMacOS ? 'pl-[70px] mt-[38px] md:mt-0' : ''}">
 				
 				<!-- Left: Logo -->
 				<div class="flex-shrink-0 flex items-center w-[200px]">

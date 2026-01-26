@@ -13,6 +13,7 @@
 	import type { SessionInfo, Participant } from '$lib/collaboration/types';
 	import SessionsModal from '$lib/components/modals/SessionsModal.svelte';
 	import DictionariesModal from '$lib/components/modals/DictionariesModal.svelte';
+	import HelpModal from '$lib/components/modals/HelpModal.svelte';
 	import { modalStore } from '$lib/stores/modalStore.svelte';
 	import { clickOutside } from '$lib/components/prosemirror-speech/utils/clickOutside';
 
@@ -1885,4 +1886,10 @@
 	bind:open={modalStore.showDictionariesModal}
 	onClose={() => modalStore.closeDictionaries()}
 	onDictionariesChanged={() => speechEditor?.reloadTextSnippetEntries()}
+/>
+
+<!-- Help Modal (SPA overlay) -->
+<HelpModal
+	bind:open={modalStore.showHelpModal}
+	onClose={() => modalStore.closeHelp()}
 />

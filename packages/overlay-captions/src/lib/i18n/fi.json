@@ -1,0 +1,120 @@
+{
+  "app": {
+    "title": "Jutukuva Tekstitys",
+    "shortcut_hint": "Ctrl+Shift+O peittokuvan vaihtamiseen"
+  },
+  "session": {
+    "title": "Istunto",
+    "code_placeholder": "ISTUNTOKOODI",
+    "connect": "Yhdistä",
+    "disconnect": "Katkaise",
+    "connected": "Yhdistetty",
+    "rejoin": "Yhdistä uudelleen",
+    "error_invalid_code": "Syötä kelvollinen 6-numeroinen koodi",
+    "password_placeholder": "Syötä salasana",
+    "password_hint": "Tämä istunto vaatii salasanan",
+    "password_required": "Syötä salasana"
+  },
+  "preview": {
+    "title": "Esikatselu",
+    "show_overlay": "Näytä peittokuva",
+    "hide_overlay": "Piilota peittokuva",
+    "waiting": "Odotetaan tekstitystä..."
+  },
+  "settings": {
+    "title": "Asetukset",
+    "subtitle": "Muokkaa näkymääsi",
+    "close": "Sulje",
+    "font_size": "Fonttikoko",
+    "font_weight": "Fontin paksuus",
+    "font_weight_regular": "Tavallinen",
+    "font_weight_regular_desc": "Normaali paksuus",
+    "font_weight_semibold": "Puolilihavoitu",
+    "font_weight_semibold_desc": "Korostettu teksti",
+    "colors": "Värit",
+    "colors_desc": "Valitse tekstin ja taustan väri",
+    "text_color": "Tekstin väri",
+    "background_color": "Taustan väri",
+    "presets": "Esiasetukset",
+    "preset_black_on_white": "Musta valkoisella",
+    "preset_white_on_black": "Valkoinen mustalla",
+    "preset_yellow_on_black": "Keltainen mustalla",
+    "preset_cyan_on_dark": "Syaani tummalla",
+    "preset_amber_on_charcoal": "Meripihka hiilellä",
+    "preset_blue_on_graphite": "Sininen grafiitilla",
+    "layout": "Asettelu",
+    "layout_desc": "Tekstin tasaus ja asettelu",
+    "horizontal_alignment": "Vaakasuuntainen tasaus",
+    "align_full": "Koko leveys",
+    "align_left": "Vasen",
+    "align_middle": "Keskellä",
+    "align_right": "Oikea",
+    "reset": "Palauta oletukset",
+    "overlay": {
+      "title": "Peittokuva",
+      "position": "Sijainti",
+      "position_top": "Ylhäällä",
+      "position_center": "Keskellä",
+      "position_bottom": "Alhaalla",
+      "position_custom": "Mukautettu",
+      "width": "Leveys",
+      "height": "Korkeus",
+      "click_through": "Läpiklikkaus-tila",
+      "display_mode": "Näyttötila",
+      "last_line": "Viimeinen rivi",
+      "multi_line": "Useita rivejä",
+      "reset_position": "Palauta sijainti"
+    },
+    "font": {
+      "title": "Fontti",
+      "family": "Kirjasintyyppi",
+      "size": "Koko",
+      "weight": "Paksuus",
+      "text_color": "Tekstin väri",
+      "background_color": "Taustan väri",
+      "background_opacity": "Taustan läpinäkyvyys"
+    },
+    "line_height": "Rivikorkeus",
+    "preview_text": "Esikatseluteksti"
+  },
+  "overlay": {
+    "waiting": "Odotetaan tekstitystä...",
+    "settings_loaded": "Asetukset ladattu, odotetaan tekstitystä...",
+    "error_loading": "Virhe asetuksia ladattaessa",
+    "close": "Sulje peittokuva"
+  },
+  "help": {
+    "title": "Käyttöopas",
+    "subtitle": "Peittokuvasovelluksen opas",
+    "joining": {
+      "title": "Istuntoon liittyminen",
+      "step1": "Syötä 6-numeroinen istuntokoodi pääkenttään",
+      "step2": "Jos istunto on salasanasuojattu, syötä salasana",
+      "step3": "Klikkaa 'Yhdistä' ja odota yhteyden muodostumista"
+    },
+    "controls": {
+      "title": "Peittokuvan hallinta",
+      "move": "Vedä pääikkunaa siirtääksesi sitä",
+      "resize": "Käytä asetusikkunaa koon säätämiseen",
+      "toggle": "Paina Ctrl+Shift+O näyttääksesi/piilottaaksesi peittokuvan",
+      "clickThrough": "Ota käyttöön läpiklikkaus-tila klikataksesi peittokuvan läpi"
+    },
+    "shortcuts": {
+      "title": "Pikanäppäimet",
+      "toggleOverlay": "Näytä/piilota peittokuvaikkuna"
+    },
+    "customization": {
+      "title": "Ulkoasun muokkaus",
+      "fontSize": "Säädä fonttikokoa asetuksissa",
+      "colors": "Muokkaa tekstin ja taustan värejä",
+      "presets": "Käytä valmiita väriteemoja",
+      "alignment": "Muuta tekstin tasausta tarpeen mukaan"
+    },
+    "tips": {
+      "title": "Vinkkejä",
+      "tip1": "Käytä valkoista tekstiä mustalla taustalla paremman kontrastin saamiseksi",
+      "tip2": "Suurenna fonttia katsoessasi näyttöä kaukaa",
+      "tip3": "Käytä läpiklikkaus-tilaa klikataksesi peittokuvan takana olevia ikkunoita"
+    }
+  }
+}

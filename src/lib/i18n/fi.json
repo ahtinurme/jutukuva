@@ -4,7 +4,8 @@
   },
   "nav": {
     "sessions": "Istunnot",
-    "textSnippets": "Korvaukset"
+    "textSnippets": "Korvaukset",
+    "help": "Käyttöopas"
   },
   "theme": {
     "light": "Vaalea",
@@ -709,6 +710,252 @@
       "builtin": "Sisäänrakennettu",
       "exportError": "Sanakirjan vienti epäonnistui",
       "importError": "Sanakirjan tuonti epäonnistui. Tarkista tiedostomuoto."
+    }
+  },
+  "help": {
+    "title": "Käyttöopas",
+    "description": "Jutukuva-sovelluksen oppaat ja tekniset tiedot",
+    "nav": {
+      "gettingStarted": "Aloittaminen",
+      "textEditing": "Tekstin muokkaus",
+      "dictionaries": "Korvaussanakirjat",
+      "sessionSharing": "Istunnon jakaminen",
+      "overlaySubtitles": "Päällekkäistekstitykset",
+      "tips": "Vinkkejä",
+      "technicalInfo": "Tekniset tiedot"
+    },
+    "gettingStarted": {
+      "title": "Aloittaminen",
+      "installation": {
+        "title": "Sovelluksen asennus",
+        "description": "Jutukuva on työpöytäsovellus, joka toimii Windowsissa, macOS:ssä ja Linuxissa.",
+        "step1": "Lataa sovellus viralliselta verkkosivustolta",
+        "step2": "Suorita asennusohjelma ja seuraa ohjeita",
+        "step3": "Avaa sovellus ja olet valmis aloittamaan"
+      },
+      "audioSource": {
+        "title": "Äänilähteen valinta",
+        "description": "Jutukuva tukee kahdenlaisia äänilähteitä:",
+        "microphone": "Mikrofoni",
+        "microphoneDesc": "käytä tietokoneesi mikrofonia tai ulkoista mikrofonia puheen tallentamiseen",
+        "system": "Järjestelmäääni",
+        "systemDesc": "tallenna tietokoneessa soivaa ääntä (esim. kokoussovelluksista)"
+      },
+      "recording": {
+        "title": "Nauhoituksen aloittaminen",
+        "description": "Puheentunnistuksen aloittaminen:",
+        "step1": "Valitse äänilähde asetuksista (rataskuvake)",
+        "step2": "Paina suurta mikrofonipainiketta aloittaaksesi nauhoituksen",
+        "step3": "Puhu selkeästi ja teksti ilmestyy editoriin reaaliajassa"
+      },
+      "modelDownload": {
+        "title": "Puheentunnistusmallin lataus",
+        "description": "Ensimmäisellä käynnistyskerralla sovellus lataa puheentunnistusmallin. Tämä tapahtuu automaattisesti ja voi kestää muutaman minuutin internetyhteytesi nopeudesta riippuen. Seuraavilla käynnistyskerroilla käytetään jo ladattua mallia."
+      }
+    },
+    "textEditing": {
+      "title": "Tekstin muokkaus",
+      "realtime": {
+        "title": "Reaaliaikainen muokkaus",
+        "description": "Voit muokata tekstiä samanaikaisesti nauhoituksen kanssa:",
+        "feature1": "Napsauta mitä tahansa kohtaa tekstissä tehdäksesi korjauksia",
+        "feature2": "Odottavat sanat on korostettu, kunnes ne vahvistetaan",
+        "feature3": "Automaattinen vahvistus vahvistaa sanat tietyn ajan kuluttua"
+      },
+      "shortcuts": {
+        "title": "Pikanäppäimet",
+        "action": "Toiminto",
+        "shortcut": "Pikanäppäin",
+        "confirmWords": "Vahvista sanat kursorin sijaintiin asti",
+        "undo": "Kumoa",
+        "redo": "Tee uudelleen",
+        "newParagraph": "Uusi kappale",
+        "newParagraphSpeaker": "Uusi kappale puhujan valinnalla",
+        "nextWord": "Siirry seuraavaan sanaan",
+        "prevWord": "Siirry edelliseen sanaan"
+      },
+      "speakers": {
+        "title": "Puhujien hallinta",
+        "description": "Voit määrittää eri puhujia eri kappaleille:",
+        "feature1": "Paina Tab luodaksesi uuden kappaleen ja valitaksesi puhujan",
+        "feature2": "Napsauta puhujan nimeä kappaleen alussa muuttaaksesi sitä",
+        "feature3": "Puhujat tallennetaan automaattisesti tulevia istuntoja varten"
+      },
+      "autoScroll": {
+        "title": "Automaattinen vieritys",
+        "description": "Kun automaattinen vieritys on käytössä, editori vierittää automaattisesti, jotta viimeisin teksti on aina näkyvissä. Voit poistaa sen käytöstä, jos haluat navigoida manuaalisesti."
+      }
+    },
+    "dictionaries": {
+      "title": "Korvaussanakirjat",
+      "overview": {
+        "title": "Yleiskatsaus",
+        "description": "Korvaussanakirjat mahdollistavat lyhenteiden luomisen, jotka korvataan automaattisesti pidemmällä tekstillä. Tämä on hyödyllistä usein käytetyille lauseille, nimille tai teknisille termeille."
+      },
+      "creating": {
+        "title": "Sanakirjan luominen",
+        "step1": "Avaa 'Korvaukset' navigaatiosta",
+        "step2": "Napsauta 'Uusi sanakirja' ja anna nimi",
+        "step3": "Lisää merkintöjä määrittämällä laukaisin ja korvaus"
+      },
+      "entries": {
+        "title": "Merkintöjen lisääminen",
+        "description": "Jokainen merkintä koostuu laukaisimesta ja korvauksesta:",
+        "trigger": "amb",
+        "replacement": "ambulanssi",
+        "example": "Esimerkki: kun kirjoitat 'amb' ja painat välilyöntiä, se korvataan sanalla 'ambulanssi'"
+      },
+      "usage": {
+        "title": "Käyttö",
+        "spaceKey": "Välilyönti",
+        "applyDesc": "käytä korvausta (kun vihjeteksti näkyy)",
+        "cancelDesc": "peruuta korvaus ja lisää tavallinen välilyönti"
+      },
+      "importExport": {
+        "title": "Tuonti ja vienti",
+        "description": "Voit jakaa ja varmuuskopioida sanakirjoja:",
+        "export": "Vienti tallentaa sanakirjan JSON-tiedostona",
+        "import": "Tuonti lataa merkinnät JSON-tiedostosta olemassa olevaan sanakirjaan"
+      }
+    },
+    "sessionSharing": {
+      "title": "Istunnon jakaminen",
+      "overview": {
+        "title": "Yleiskatsaus",
+        "description": "Jutukuva mahdollistaa reaaliaikaisen transkription jakamisen muiden kanssa. Katsojat näkevät tekstin ilmestyvän samanaikaisesti nauhoituksen aikana."
+      },
+      "creating": {
+        "title": "Istunnon luominen",
+        "step1": "Napsauta yhteistyöpainiketta (ihmisten kuvake) editorin työkaluriviltä",
+        "step2": "Valitse 'Aloita uusi istunto'",
+        "step3": "Jaa istuntokoodi muille"
+      },
+      "code": {
+        "title": "Istuntokoodi",
+        "description": "Jokainen istunto saa yksilöllisen 6-merkkisen koodin:",
+        "example": "Esimerkki istuntokoodista"
+      },
+      "qr": {
+        "title": "QR-koodi",
+        "description": "Istunnon jakamisikkunassa löydät QR-koodin, jonka muut voivat skannata puhelimellaan liittyäkseen välittömästi."
+      },
+      "webLink": {
+        "title": "Verkkolinkki",
+        "description": "Voit myös jakaa suoran linkin, joka avaa istunnon verkkoselaimessa:"
+      },
+      "password": {
+        "title": "Salasanasuojaus",
+        "description": "Istuntoa luodessa tai muokatessa voit lisätä salasanan. Jos salasana on asetettu, katsojien on syötettävä se ennen kuin he voivat nähdä tekstin."
+      },
+      "participants": {
+        "title": "Osallistujien hallinta",
+        "description": "Istunnon jakamisikkunassa näet kaikki yhdistetyt osallistujat. Voit lopettaa istunnon milloin tahansa, mikä katkaisee kaikkien yhteyden."
+      }
+    },
+    "overlaySubtitles": {
+      "title": "Päällekkäistekstitykset",
+      "overview": {
+        "title": "Yleiskatsaus",
+        "description": "Päällekkäistekstityssovellus näyttää tekstitykset läpinäkyvänä ikkunana minkä tahansa muun sovelluksen päällä. Se on ihanteellinen kokouksiin, esityksiin tai videopuheluihin."
+      },
+      "installation": {
+        "title": "Asennus",
+        "description": "Päällekkäissovellus on erillinen ohjelma, jonka voit ladata:",
+        "windows": "Windows: lataa .exe-tiedosto ja suorita se",
+        "macos": "macOS: lataa .dmg-tiedosto ja vedä sovellus Ohjelmat-kansioon",
+        "linux": "Linux: lataa AppImage tai käytä paketinhallintaa"
+      },
+      "joining": {
+        "title": "Istuntoon liittyminen",
+        "step1": "Avaa päällekkäissovellus",
+        "step2": "Syötä 6-merkkinen istuntokoodi",
+        "step3": "Jos istunto on salasanasuojattu, syötä myös salasana"
+      },
+      "controls": {
+        "title": "Päällekkäisikkunan hallinta",
+        "move": "Vedä ikkunaa siirtääksesi sitä näytöllä",
+        "resize": "Käytä ikkunan reunoja koon muuttamiseen",
+        "toggle": "Paina Ctrl+Shift+O piilottaaksesi/näyttääksesi päällyksen nopeasti"
+      },
+      "customization": {
+        "title": "Ulkoasun mukauttaminen",
+        "fontSize": "Muuta fonttikokoa katseluetäisyyden mukaan",
+        "fontWeight": "Valitse tavallinen tai puolilihavoitu teksti",
+        "colors": "Mukauta tekstin ja taustan värejä",
+        "presets": "Käytä esiasetetuja väriteemoja nopeaan mukauttamiseen"
+      },
+      "shortcut": {
+        "title": "Globaali pikanäppäin",
+        "description": "Tämä näppäinyhdistelmä toimii milloin tahansa, vaikka päällekkäissovellus ei olisi aktiivisena"
+      }
+    },
+    "tips": {
+      "title": "Vinkkejä parempiin tuloksiin",
+      "microphone": {
+        "title": "Mikrofonin asetus",
+        "tip1": "Käytä laadukasta mikrofonia, mieluiten kuulokkeita mikrofonilla",
+        "tip2": "Sijoita mikrofoni lähelle suutasi (10-15 cm)",
+        "tip3": "Vältä mikrofonin koskettamista tai liikuttamista nauhoituksen aikana"
+      },
+      "environment": {
+        "title": "Ympäristö",
+        "tip1": "Valitse hiljainen huone ilman taustamelua",
+        "tip2": "Vältä huoneita, joissa on voimakas kaiku",
+        "tip3": "Sulje ikkunat ja ovet melun vähentämiseksi"
+      },
+      "speaking": {
+        "title": "Puhetyyli",
+        "tip1": "Puhu selkeästi ja kohtuullisella nopeudella",
+        "tip2": "Pidä tasainen etäisyys mikrofoniin",
+        "tip3": "Pidä luonnollisia taukoja lauseiden välillä"
+      },
+      "estonian": {
+        "title": "Viron kielen erityispiirteet",
+        "description": "Jutukuva on optimoitu viron kielen puheentunnistukseen:",
+        "tip1": "Ääntä pitkät ja lyhyet äänteet selkeästi",
+        "tip2": "Lausu numerot ja lyhenteet sanoina kun mahdollista"
+      }
+    },
+    "technicalInfo": {
+      "title": "Tekniset tiedot",
+      "database": {
+        "title": "Tietokannan sijainti",
+        "description": "Jutukuva tallentaa istunnot ja asetukset paikalliseen tietokantaan:",
+        "os": "Käyttöjärjestelmä",
+        "path": "Sijainti"
+      },
+      "logs": {
+        "title": "Lokitiedostojen sijainti",
+        "description": "Vianmääritykseen tarvittavat lokitiedostot sijaitsevat:"
+      },
+      "network": {
+        "title": "Verkkovaatimukset",
+        "description": "Internetyhteys vaaditaan istunnon jakamiseen:",
+        "requirement1": "Puheentunnistus toimii täysin offline-tilassa - internetiä ei tarvita",
+        "requirement2": "Istunnon jakaminen vaatii yhteyden tekstiks.ee-palvelimeen"
+      },
+      "macosAudio": {
+        "title": "Järjestelmääänen asetus macOS:ssä",
+        "description": "macOS:ssä tarvitaan virtuaalinen äänilaite järjestelmääänen tallentamiseen:",
+        "step1": "Asenna BlackHole tai vastaava virtuaalinen äänilaite",
+        "step2": "Luo Multi-Output-laite Audio MIDI Setup -sovelluksella",
+        "step3": "Valitse Jutukuvassa äänilähteeksi BlackHole-laite"
+      },
+      "troubleshooting": {
+        "title": "Yleiset ongelmat ja ratkaisut",
+        "issue1": {
+          "title": "Puheentunnistus ei käynnisty",
+          "solution": "Tarkista, että mikrofoni on kytketty ja sovelluksella on lupa käyttää mikrofonia. Kokeile sovelluksen uudelleenkäynnistystä."
+        },
+        "issue2": {
+          "title": "Istunnon jakaminen ei toimi",
+          "solution": "Tarkista internetyhteytesi. Varmista, että palomuuri ei estä yhteyttä tekstiks.ee-palvelimeen."
+        },
+        "issue3": {
+          "title": "Heikko tunnistuslaatu",
+          "solution": "Tarkista mikrofonin laatu ja ympäristö. Puhu hitaammin ja selkeämmin. Varmista, että mikrofoni on sijoitettu oikein."
+        }
+      }
     }
   }
 }
