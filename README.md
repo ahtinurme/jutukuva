@@ -2,6 +2,13 @@
 
 Reaalajas eestikeelse kõne tekstiks muutmise rakendus. Rakendus tuvastab kõne automaatselt ja kuvab selle tekstina, mida saab koheselt redigeerida ja teistega jagada.
 
+<p align="center">
+  <a href="https://youtube.com/watch?v=WjRNXt27Dbs">
+    <img src="https://img.youtube.com/vi/WjRNXt27Dbs/maxresdefault.jpg" alt="Jutukuva tutvustusvideo" width="640"><br>
+    <img src="https://img.shields.io/badge/▶%20Vaata%20videot%20YouTube'is-red?style=for-the-badge&logo=youtube&logoColor=white" alt="Vaata YouTube'is">
+  </a>
+</p>
+
 ## Allalaadimine
 
 ### Jutukuva (põhirakendus)
