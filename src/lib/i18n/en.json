@@ -540,6 +540,10 @@
     "systemAudioNotAvailable": "System audio not available. Please follow the setup instructions below or use microphone.",
     "deviceNotFound": "Selected audio device not found.",
     "noMonitorDevice": "No monitor device available for system audio capture.",
+    "transcribeFile": "Transcribe audio file",
+    "transcribingFile": "Transcribing file...",
+    "cancelFileTranscription": "Cancel file transcription",
+    "fileTranscriptionFailed": "Failed to transcribe file: {error}",
     "languages": {
       "et": "Estonian",
       "en": "English",

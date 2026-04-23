@@ -7,6 +7,7 @@
 	import * as ort from 'onnxruntime-web';
 	import { SpeechEditor, ShareSessionModal, EndSessionModal } from '$lib/components/prosemirror-speech';
 	import { AudioSourceManager, type AudioSourceType, type AudioDevice } from '$lib/audioSourceManager';
+	import { streamAudioFileTo16kMono } from '$lib/audioFileStreamer';
 	import MacOSAudioSetup from '$lib/components/MacOSAudioSetup.svelte';
 	import { CollaborationManager } from '$lib/collaboration/CollaborationManager';
 	import { generateSessionCode, normalizeSessionCode, isValidSessionCode } from '$lib/collaboration/sessionCode';
@@ -73,6 +74,9 @@
 	// UI State
 	let isConnected = $state(false);
 	let isRecording = $state(false);
+	let isTranscribingFile = $state(false);
+	let fileTranscriptionProgress = $state(0); // 0-100
+	let fileInputEl: HTMLInputElement | null = $state(null);
 	let isWasmLoading = $state(false);
 	let isWasmReady = $state(false);
 	let initializationStatusKey = $state(''); // Store translation key, not translated string
@@ -1248,6 +1252,135 @@
 		}
 	}
 
+	// Transcribe an existing audio file (mp3, wav, m4a, ogg, flac, ...).
+	// Decodes + resamples to 16 kHz mono in the renderer, then streams 1536-sample
+	// frames through the same sherpa-onnx IPC pipeline that live mic audio uses.
+	async function transcribeFile(file: File) {
+		if (isRecording || isTranscribingFile) {
+			return;
+		}
+
+		microphoneError = '';
+		vadError = '';
+		connectionError = '';
+
+		if (!window.asr) {
+			connectionError = $_('dictate.asrNotInitialized', {
+				default: 'Speech recognition not available. Please ensure you are running the Electron app.'
+			});
+			return;
+		}
+
+		if (!asrInitialized) {
+			const asrResult = await window.asr.initialize();
+			if (!asrResult.success) {
+				connectionError = asrResult.error || $_('dictate.failedToInitializeASR');
+				return;
+			}
+			asrInitialized = true;
+			isConnected = true;
+		}
+
+		isTranscribingFile = true;
+		fileTranscriptionProgress = 0;
+
+		try {
+			// 1. Start ASR session up front so the worker is ready before the
+			// first decoded chunk arrives.
+			const sessionStarted = await startASRSession();
+			if (!sessionStarted) {
+				return;
+			}
+
+			// 2. Signal new paragraph if editor already has content
+			if (speechEditor?.hasContent()) {
+				speechEditor.signalVadSpeechEnd();
+			}
+			speechEditor?.startTiming();
+
+			// 3. Stream-decode the file. For m4a/mp4/aac this uses WebCodecs +
+			// MP4Box so peak memory stays in the low MB range regardless of file
+			// length. Chunks arrive here already at 16 kHz mono.
+			// Rolling frame buffer across decode chunks: the streamer emits
+			// variable-sized chunks that don't align to FRAME_SIZE (1536), so we
+			// accumulate samples and flush full frames out.
+			let frameBuf = new Float32Array(FRAME_SIZE);
+			let frameBufFill = 0;
+			let framesSent = 0;
+
+			await streamAudioFileTo16kMono(
+				file,
+				async (chunk) => {
+					if (!isTranscribingFile) {
+						throw new Error('cancelled');
+					}
+
+					let pos = 0;
+					while (pos < chunk.length) {
+						const take = Math.min(FRAME_SIZE - frameBufFill, chunk.length - pos);
+						frameBuf.set(chunk.subarray(pos, pos + take), frameBufFill);
+						frameBufFill += take;
+						pos += take;
+
+						if (frameBufFill === FRAME_SIZE) {
+							await sendAudioToASR(frameBuf);
+							frameBuf = new Float32Array(FRAME_SIZE);
+							frameBufFill = 0;
+							framesSent++;
+
+							if (framesSent % 25 === 0) {
+								await new Promise((r) => setTimeout(r, 0));
+							}
+						}
+					}
+				},
+				{
+					onProgress: (fraction) => {
+						fileTranscriptionProgress = Math.min(99, Math.round(fraction * 100));
+					}
+				}
+			);
+
+			// Flush a short tail frame if anything remains (zero-padded).
+			if (isTranscribingFile && frameBufFill > 0) {
+				frameBuf.fill(0, frameBufFill);
+				await sendAudioToASR(frameBuf);
+			}
+
+			// 4. Flush ASR and finalize.
+			await stopASRSession();
+			fileTranscriptionProgress = 100;
+		} catch (error: any) {
+			if (error?.message === 'cancelled') {
+				// User cancellation — not an error path.
+				try {
+					await stopASRSession();
+				} catch {}
+				return;
+			}
+			console.error('[FILE] Transcription failed:', error);
+			connectionError = error?.message
+				? $_('dictate.fileTranscriptionFailed', { values: { error: error.message } })
+				: $_('dictate.fileTranscriptionFailed', { values: { error: 'unknown error' } });
+			try {
+				await stopASRSession();
+			} catch {}
+		} finally {
+			speechEditor?.stopTiming();
+			isTranscribingFile = false;
+		}
+	}
+
+	function handleFilePicked(event: Event) {
+		const input = event.currentTarget as HTMLInputElement;
+		const file = input.files?.[0];
+		// Reset so the same file can be picked again.
+		input.value = '';
+		if (file) {
+			transcribeFile(file);
+		}
+	}
+
 	// Stop recording
 	async function stopRecording() {
 		isRecording = false;
@@ -1483,6 +1616,11 @@
 					<div class="w-2 h-2 rounded-full bg-white shrink-0"></div>
 					<span class="truncate max-w-[200px]">{isSpeaking ? $_('dictate.speakingDetected') : $_('dictate.listeningForSpeech')}</span>
 				</div>
+			{:else if isTranscribingFile}
+				<div class="badge badge-info gap-2">
+					<span class="loading loading-spinner loading-xs shrink-0"></span>
+					<span class="truncate max-w-[240px]">{$_('dictate.transcribingFile', { default: 'Transcribing file...' })} {fileTranscriptionProgress}%</span>
+				</div>
 			{:else if isWasmLoading || !isWasmReady}
 				<div class="badge badge-info gap-2">
 					<span class="loading loading-spinner loading-xs shrink-0"></span>
@@ -1559,7 +1697,7 @@
 								<button
 									class="btn btn-circle btn-primary btn-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200"
 									onclick={startRecording}
-									disabled={!isWasmReady}
+									disabled={!isWasmReady || isTranscribingFile}
 									title={$_('dictate.startRecording')}
 								>
 									<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -1571,6 +1709,38 @@
 									<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
+									</svg>
+								</button>
+							{/if}
+
+							<!-- Transcribe Audio File Button -->
+							<input
+								type="file"
+								accept="audio/*,.mp3,.wav,.m4a,.ogg,.flac,.aac,.opus"
+								class="hidden"
+								bind:this={fileInputEl}
+								onchange={handleFilePicked}
+							/>
+							{#if isTranscribingFile}
+								<button
+									class="btn btn-circle btn-warning shadow-lg"
+									onclick={() => { isTranscribingFile = false; }}
+									title={$_('dictate.cancelFileTranscription', { default: 'Cancel file transcription' })}
+									aria-label={$_('dictate.cancelFileTranscription', { default: 'Cancel file transcription' })}
+								>
+									<span class="loading loading-spinner loading-sm"></span>
+								</button>
+								<span class="text-xs font-mono opacity-70 min-w-[3ch]">{fileTranscriptionProgress}%</span>
+							{:else}
+								<button
+									class="btn btn-circle btn-ghost hover:bg-base-200 transition-colors"
+									onclick={() => fileInputEl?.click()}
+									disabled={!isWasmReady || isRecording}
+									title={$_('dictate.transcribeFile', { default: 'Transcribe audio file' })}
+									aria-label={$_('dictate.transcribeFile', { default: 'Transcribe audio file' })}
+								>
+									<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+										<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm12-3c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z" />
 									</svg>
 								</button>
 							{/if}

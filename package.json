@@ -47,6 +47,7 @@
     "@ricky0123/vad-web": "^0.0.29",
     "@sveltejs/adapter-node": "^5.4.0",
     "better-sqlite3": "^12.4.1",
+    "mp4box": "^2.3.0",
     "nanoid": "^5.1.6",
     "onnxruntime-web": "^1.23.2",
     "prosemirror-changeset": "^2.2.0",
@@ -68,10 +69,10 @@
     "yjs": "^13.6.27"
   },
   "optionalDependencies": {
-    "sherpa-onnx-linux-x64": "^1.12.18",
-    "sherpa-onnx-linux-arm64": "^1.12.18",
-    "sherpa-onnx-darwin-x64": "^1.12.18",
     "sherpa-onnx-darwin-arm64": "^1.12.18",
+    "sherpa-onnx-darwin-x64": "^1.12.18",
+    "sherpa-onnx-linux-arm64": "^1.12.18",
+    "sherpa-onnx-linux-x64": "^1.12.18",
     "sherpa-onnx-win-x64": "^1.12.18"
   },
   "build": {
@@ -120,7 +121,9 @@
         {
           "from": "node_modules/sherpa-onnx-darwin-${arch}",
           "to": "sherpa-libs",
-          "filter": ["**/*"]
+          "filter": [
+            "**/*"
+          ]
         }
       ]
     },
@@ -139,7 +142,9 @@
         {
           "from": "node_modules/sherpa-onnx-win-x64",
           "to": "sherpa-libs",
-          "filter": ["**/*"]
+          "filter": [
+            "**/*"
+          ]
         }
       ]
     },
@@ -164,7 +169,9 @@
         {
           "from": "node_modules/sherpa-onnx-linux-x64",
           "to": "sherpa-libs",
-          "filter": ["**/*"]
+          "filter": [
+            "**/*"
+          ]
         }
       ]
     },
