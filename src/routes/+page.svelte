@@ -7,7 +7,7 @@
 	import * as ort from 'onnxruntime-web';
 	import { SpeechEditor, ShareSessionModal, EndSessionModal } from '$lib/components/prosemirror-speech';
 	import { AudioSourceManager, type AudioSourceType, type AudioDevice } from '$lib/audioSourceManager';
-	import { decodeAudioFileTo16kMono } from '$lib/audioFileDecoder';
+	import { streamAudioFileTo16kMono } from '$lib/audioFileStreamer';
 	import MacOSAudioSetup from '$lib/components/MacOSAudioSetup.svelte';
 	import { CollaborationManager } from '$lib/collaboration/CollaborationManager';
 	import { generateSessionCode, normalizeSessionCode, isValidSessionCode } from '$lib/collaboration/sessionCode';
@@ -1285,58 +1285,79 @@
 		fileTranscriptionProgress = 0;
 
 		try {
-			// 1. Decode to 16 kHz mono PCM
-			const pcm = await decodeAudioFileTo16kMono(file);
-			console.log(`[FILE] Decoded ${file.name}: ${pcm.length} samples (${(pcm.length / 16000).toFixed(1)}s)`);
-
-			// 2. Start ASR session
+			// 1. Start ASR session up front so the worker is ready before the
+			// first decoded chunk arrives.
 			const sessionStarted = await startASRSession();
 			if (!sessionStarted) {
 				return;
 			}
 
-			// 3. Signal new paragraph if editor already has content
+			// 2. Signal new paragraph if editor already has content
 			if (speechEditor?.hasContent()) {
 				speechEditor.signalVadSpeechEnd();
 			}
 			speechEditor?.startTiming();
 
-			// 4. Stream frames through the existing ASR pipeline.
-			// FRAME_SIZE (1536) and SAMPLE_RATE (16000) match the VAD output format.
-			const totalFrames = Math.ceil(pcm.length / FRAME_SIZE);
-			let frameIndex = 0;
+			// 3. Stream-decode the file. For m4a/mp4/aac this uses WebCodecs +
+			// MP4Box so peak memory stays in the low MB range regardless of file
+			// length. Chunks arrive here already at 16 kHz mono.
+			// Rolling frame buffer across decode chunks: the streamer emits
+			// variable-sized chunks that don't align to FRAME_SIZE (1536), so we
+			// accumulate samples and flush full frames out.
+			let frameBuf = new Float32Array(FRAME_SIZE);
+			let frameBufFill = 0;
+			let framesSent = 0;
 
-			for (let offset = 0; offset < pcm.length; offset += FRAME_SIZE) {
-				if (!isTranscribingFile) {
-					break; // user cancelled
+			await streamAudioFileTo16kMono(
+				file,
+				async (chunk) => {
+					if (!isTranscribingFile) {
+						throw new Error('cancelled');
+					}
+
+					let pos = 0;
+					while (pos < chunk.length) {
+						const take = Math.min(FRAME_SIZE - frameBufFill, chunk.length - pos);
+						frameBuf.set(chunk.subarray(pos, pos + take), frameBufFill);
+						frameBufFill += take;
+						pos += take;
+
+						if (frameBufFill === FRAME_SIZE) {
+							await sendAudioToASR(frameBuf);
+							frameBuf = new Float32Array(FRAME_SIZE);
+							frameBufFill = 0;
+							framesSent++;
+
+							if (framesSent % 25 === 0) {
+								await new Promise((r) => setTimeout(r, 0));
+							}
+						}
+					}
+				},
+				{
+					onProgress: (fraction) => {
+						fileTranscriptionProgress = Math.min(99, Math.round(fraction * 100));
+					}
 				}
+			);
 
-				const end = Math.min(offset + FRAME_SIZE, pcm.length);
-				// Last frame may be short — pad with zeros so sherpa sees a full frame.
-				let frame: Float32Array;
-				if (end - offset === FRAME_SIZE) {
-					frame = pcm.subarray(offset, end);
-				} else {
-					frame = new Float32Array(FRAME_SIZE);
-					frame.set(pcm.subarray(offset, end));
-				}
-
-				await sendAudioToASR(frame);
-
-				frameIndex++;
-				fileTranscriptionProgress = Math.round((frameIndex / totalFrames) * 100);
-
-				// Yield to the UI every ~50 frames so the progress bar updates and
-				// the main thread stays responsive.
-				if (frameIndex % 50 === 0) {
-					await new Promise((r) => setTimeout(r, 0));
-				}
+			// Flush a short tail frame if anything remains (zero-padded).
+			if (isTranscribingFile && frameBufFill > 0) {
+				frameBuf.fill(0, frameBufFill);
+				await sendAudioToASR(frameBuf);
 			}
 
-			// 5. Flush any remaining audio and finalize.
+			// 4. Flush ASR and finalize.
 			await stopASRSession();
 			fileTranscriptionProgress = 100;
 		} catch (error: any) {
+			if (error?.message === 'cancelled') {
+				// User cancellation — not an error path.
+				try {
+					await stopASRSession();
+				} catch {}
+				return;
+			}
 			console.error('[FILE] Transcription failed:', error);
 			connectionError = error?.message
 				? $_('dictate.fileTranscriptionFailed', { values: { error: error.message } })
