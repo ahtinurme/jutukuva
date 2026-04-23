@@ -522,6 +522,10 @@
     "systemAudioNotAvailable": "Süsteemiheli pole saadaval. Palun järgige allpool olevaid seadistusjuhiseid või kasutage mikrofoni.",
     "deviceNotFound": "Valitud heliseadet ei leitud.",
     "noMonitorDevice": "Süsteemiheli salvestamiseks pole monitorseadet saadaval.",
+    "transcribeFile": "Transkribeeri helifail",
+    "transcribingFile": "Helifaili transkribeerimine...",
+    "cancelFileTranscription": "Tühista helifaili transkribeerimine",
+    "fileTranscriptionFailed": "Helifaili transkribeerimine ebaõnnestus: {error}",
     "languages": {
       "et": "eesti",
       "en": "inglise",

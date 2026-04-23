@@ -506,6 +506,10 @@
     "systemAudioNotAvailable": "Järjestelmän ääni ei ole käytettävissä. Seuraa alla olevia asennusohjeita tai käytä mikrofonia.",
     "deviceNotFound": "Valittua äänilaitetta ei löytynyt.",
     "noMonitorDevice": "Järjestelmääänen kaappaamiseen ei ole monitorilaitetta.",
+    "transcribeFile": "Litteroi äänitiedosto",
+    "transcribingFile": "Äänitiedoston litterointi...",
+    "cancelFileTranscription": "Peruuta äänitiedoston litterointi",
+    "fileTranscriptionFailed": "Äänitiedoston litterointi epäonnistui: {error}",
     "languages": {
       "et": "viro",
       "en": "englanti",
