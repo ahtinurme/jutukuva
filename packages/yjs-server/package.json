@@ -1,6 +1,6 @@
 {
   "name": "@jutukuva/yjs-server",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "Yjs WebSocket server for syncing ProseMirror editor state",
   "type": "module",
   "main": "server.js",
