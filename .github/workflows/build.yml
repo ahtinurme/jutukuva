@@ -30,14 +30,14 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Get version from tag
         id: version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'npm'
@@ -97,7 +97,7 @@ jobs:
       # Upload directly to release for tagged builds (skip artifact storage)
       - name: Upload to Release (Linux)
         if: matrix.platform == 'linux' 
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             dist/*.AppImage
@@ -107,7 +107,7 @@ jobs:
 
       - name: Upload to Release (macOS)
         if: matrix.platform == 'mac' 
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             dist/*.dmg
@@ -117,7 +117,7 @@ jobs:
 
       - name: Upload to Release (Windows)
         if: matrix.platform == 'win' 
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             dist/*.exe
@@ -141,7 +141,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Get version from tag
         id: version
@@ -170,7 +170,7 @@ jobs:
           (Get-Content src-tauri/Cargo.toml) -replace '^version = "[^"]*"', "version = `"$version`"" | Set-Content src-tauri/Cargo.toml
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'npm'
@@ -216,7 +216,7 @@ jobs:
 
       - name: Upload to Release (Linux - overlay-captions)
         if: matrix.platform == 'linux' 
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             packages/overlay-captions/src-tauri/target/release/bundle/appimage/*.AppImage
@@ -226,7 +226,7 @@ jobs:
 
       - name: Upload to Release (macOS - overlay-captions)
         if: matrix.platform == 'mac' 
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             packages/overlay-captions/src-tauri/target/release/bundle/dmg/*.dmg
@@ -235,7 +235,7 @@ jobs:
 
       - name: Upload to Release (Windows - overlay-captions)
         if: matrix.platform == 'win' 
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             packages/overlay-captions/src-tauri/target/release/bundle/nsis/*.exe
@@ -249,7 +249,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Get version from tag
         id: get_version
@@ -275,9 +275,9 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Publish to jutukuva public repo
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
-          repository: aivo0/jutukuva
+          repository: ahtinurme/jutukuva
           tag_name: ${{ steps.get_version.outputs.VERSION }}
           name: Jutukuva ${{ steps.get_version.outputs.VERSION }}
           body: |
