@@ -277,7 +277,6 @@ jobs:
       - name: Publish to jutukuva public repo
         uses: softprops/action-gh-release@v3
         with:
-          repository: ahtinurme/jutukuva
           tag_name: ${{ steps.get_version.outputs.VERSION }}
           name: Jutukuva ${{ steps.get_version.outputs.VERSION }}
           body: |
@@ -298,4 +297,4 @@ jobs:
           draft: false
           prerelease: false
         env:
-          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
